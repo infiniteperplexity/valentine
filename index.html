@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Valentine</title>
+	</head>
+	<style>
+	</style>
+<body>
+<p>happy valentines day</p>
+</body>
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="models/HeartGeometry.js"></script>
+<script>
+var scene, camera, renderer;
+var controls, mesh, material;
+var color = 0xFF0000;
+var model = new THREE.HeartGeometry({textureStyle: "Fold"});
+var speed = 0.05;
+
+init();
+animate();
+
+function init() {
+	scene = new THREE.Scene();
+	var WIDTH = window.innerWidth;
+	var HEIGHT = window.innerHeight;
+	renderer = new THREE.WebGLRenderer({antialias: true});
+	renderer.setSize(WIDTH, HEIGHT);
+	document.body.appendChild(renderer.domElement);
+	// arguments...
+		// angle of field of view
+		// aspect ratio
+		// minimum distance to render objects
+		// maximum distance to render objects
+	camera = new THREE.PerspectiveCamera(45, WIDTH/HEIGHT, 0.1, 20000);
+	camera.position.set(0,6,0);
+	scene.add(camera);
+
+	// handle resizing
+	window.addEventListener('resize', function() {
+		var WIDTH = window.innerWidth;
+		var HEIGHT = window.innerHeight;
+		renderer.setSize(WIDTH,HEIGHT);
+		camera.aspect = WIDTH/HEIGHT;
+		camera.updateProjectionMatrix();
+	});
+
+	renderer.setClearColor(0x333F47,1);
+	var light = new THREE.PointLight(0xffffff);
+	light.position.set(-100,200,100);
+	scene.add(light);
+
+	//material = new THREE.MeshLambertMaterial({color: color});
+	var image = new THREE.ImageUtils.loadTexture("models/heart.jpg");
+	//material.map = image;
+	material = new THREE.MeshPhongMaterial({map: image});
+	material.shading = THREE.SmoothShading;
+	mesh = new THREE.Mesh(model,material);
+	scene.add(mesh);
+	mesh.rotation.y = -Math.PI/2;
+	mesh.rotation.x = -Math.PI/2;
+
+
+	controls = new THREE.OrbitControls(camera, renderer.domElement);
+}
+
+function animate() {
+	requestAnimationFrame(animate);
+	renderer.render(scene, camera);
+	mesh.rotation.y+=speed;
+	controls.update();
+}
+
+
+</script>
+</html>
