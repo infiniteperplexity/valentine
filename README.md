@@ -8,4 +8,4 @@ https://threejs.org/examples/canvas_geometry_birds.html
 
 The heart graphic was taken from this page, which now seems to be broken:
 
-webglworkshop.com/demos.html
+http://webglworkshop.com/demos.html
