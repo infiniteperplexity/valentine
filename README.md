@@ -1,6 +1,9 @@
 # valentine
 
-The index.html page for this project is a valentine for my girlfriend.  It uses three.js, a JavaScript library for creating 3D WebGL animations.
+The index.html page for this project is a valentine for my girlfriend:
+http://infiniteperplexity.github.io/valentine/
+
+It uses three.js, a JavaScript library for creating 3D WebGL animations.
 
 The swarming entities in the background were based on code from the following page:
 
